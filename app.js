@@ -1,25 +1,28 @@
-const APIURL = "https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=04c35731a5ee918f014970082a0088b1&page=1";
+const APIURL = "https://api.themoviedb.org/3/trending/all/day?api_key=7456a33850084554e3a824c16cb3486b";
 
 const IMGPATH = "https://image.tmdb.org/t/p/w1280";
 
 const SEARCHAPI = "https://api.themoviedb.org/3/search/movie?&api_key=04c35731a5ee918f014970082a0088b1&query=";
 
-// ye HTML WALE TAG
+
 const main = document.getElementById("main");
 const form = document.getElementById("form");
 const search = document.getElementById("search");
 
-///initalyy get fav movies
+
 getMovies(APIURL);
 
 async function getMovies(url) {
   const resp = await fetch(url);
+  console.log(resp);
   const respData = await resp.json();
+ 
 
-  // movie aa gyi
+  
   console.log(respData);
-  // yaha pe show karenge
+  
   showMovies(respData.results);
+  console.log(respData.results);
 
 }
 
@@ -79,3 +82,10 @@ form.addEventListener("submit", (e) => {
     search.value = "";
   }
 });
+
+on('click', '.navbar .dropdown > a', function(e) {
+  if (select('#navbar').classList.contains('navbar-mobile')) {
+    e.preventDefault()
+    this.nextElementSibling.classList.toggle('dropdown-active')
+  }
+}, true)
